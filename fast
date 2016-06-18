@@ -6,7 +6,7 @@ echo "Content-type:text/html"
 echo ""
 
 echo "<html>"
-echo "<head><meta charset=\"UTF-8\"</head>"
+echo "<head><meta charset=\"UTF-8\"></head>"
 echo "FAST 版本 V1.0"
 echo "<br />正在执行操作..."
 
