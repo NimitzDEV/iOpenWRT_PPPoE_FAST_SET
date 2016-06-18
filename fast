@@ -1,0 +1,25 @@
+#! /bin/sh
+UN=`echo "$QUERY_STRING" | sed -n 's/^.*pppoeun=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+PWD=`echo "$QUERY_STRING" | sed -n 's/^.*pppoepwd=\([^&]*\).*$/\1/p' | sed "s/%20/ /g"`
+
+echo "Content-type:text/html"
+echo ""
+
+echo "<html>"
+echo "<head><meta charset=\"UTF-8\"</head>"
+echo "FAST 版本 V1.0"
+echo "<br />正在执行操作..."
+
+echo "<br />设置 PAP/CHAP 账户"
+echo $(uci set network.wan.username=$UN)
+
+echo "<br />设置 PAP/CHAP 密码"
+echo $(uci set network.wan.password=$PWD)
+
+echo "<br />重启服务 network"
+echo $(uci commit network)
+echo $(/etc/init.d/network restart)
+
+echo "<br />操作完成"
+echo "</html>"
+exit 0
